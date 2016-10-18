@@ -9,7 +9,7 @@ const app = express();
 // set up dev and production ports
 const port = 3000;
 
-// app.use(express.static(__dirname + '/client'));
+app.use(express.static(__dirname + '/assets'));
 app.use(express.static(__dirname + '/dist'));
 
 
