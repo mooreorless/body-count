@@ -1,0 +1,19 @@
+{
+  "name": "body-count",
+  "version": "1.0.0",
+  "description": "CAB432 Cloud Computing - Live webcam body detection app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mooreorless/body-count.git"
+  },
+  "author": "Elliott Moore, Chris Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mooreorless/body-count/issues"
+  },
+  "homepage": "https://github.com/mooreorless/body-count#readme"
+}
