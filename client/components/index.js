@@ -1,2 +1,2 @@
 // require all components and export
-import Button from './Button';
+import UploadButton from './Button';

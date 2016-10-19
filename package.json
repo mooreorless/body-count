@@ -4,8 +4,8 @@
   "description": "CAB432 Cloud Computing - Live webcam body detection app",
   "main": "index.js",
   "scripts": {
-		"start": "concurrently --kill-others \"npm run build:client\" \"npm run build:server\"",
-		"build:server": "babel-node server.js",
+    "start": "concurrently --kill-others \"npm run build:client\" \"npm run build:server\"",
+    "build:server": "babel-node server.js",
     "build:client": "webpack -w",
     "dev": "npm run webpack -w && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,6 +31,7 @@
     "multer": "^1.2.0",
     "opencv": "^5.0.0",
     "react": "^15.3.2",
+    "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
     "react-tap-event-plugin": "^1.0.0",
     "webpack": "^1.13.2"

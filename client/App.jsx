@@ -5,8 +5,12 @@ import ReactDOM from 'react-dom';
 import { MuiThemeProvider } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 
+// Bootstrap Grid
+import { Grid, Row, Col } from 'react-bootstrap';
+
 // Components
 import UploadButton from './components/Button';
+
 
 class App extends React.Component {
 	render() {
@@ -14,7 +18,13 @@ class App extends React.Component {
 			<MuiThemeProvider>
 				<div>
 					<AppBar title="Body Count"/>
-					<UploadButton name="allo"/>
+					<Grid>
+						<Row>
+							<Col md={12}>
+								<UploadButton/>
+							</Col>
+						</Row>
+					</Grid>
 				</div>
 			</MuiThemeProvider>
 		);
