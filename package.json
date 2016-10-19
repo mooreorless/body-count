@@ -4,10 +4,10 @@
   "description": "CAB432 Cloud Computing - Live webcam body detection app",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node server.js",
-    "build:client": "webpack webpack.config.js",
-		"webpack-watch": "webpack -w",
-		"dev": "npm run build:client && npm start",
+		"start": "concurrently --kill-others \"npm run build:client\" \"npm run build:server\"",
+		"build:server": "babel-node server.js",
+    "build:client": "webpack -w",
+    "dev": "npm run webpack -w && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/mooreorless/body-count#readme",
   "dependencies": {
     "async": "^2.1.2",
+    "concurrently": "^3.1.0",
     "easyimage": "^2.1.0",
     "express": "^4.14.0",
     "google-map-react": "^0.20.0",
