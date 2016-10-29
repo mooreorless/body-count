@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 
 
-import config from './webpack.config.js';
+import config from './webpack.config';
 
 const app = express();
 // set up dev and production ports
