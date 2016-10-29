@@ -1,30 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//Material includes
+// Material includes
 import { MuiThemeProvider } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 
-class App extends React.Component {
-	render() {
-		const greeting = 'Hello World';
-		return (
-			<h1>{ greeting }</h1>
-		)
-	}
-};
+// Bootstrap Grid
+import { Grid, Row, Col } from 'react-bootstrap';
 
-class Main extends React.Component {
+// Components
+import UploadButton from './components/Button';
+
+
+class App extends React.Component {
 	render() {
 		return (
 			<MuiThemeProvider>
-				<AppBar title="Body Count"/>
+				<div>
+					<AppBar title="Body Count"/>
+					<Grid>
+						<Row>
+							<Col md={12}>
+								<UploadButton/>
+							</Col>
+						</Row>
+					</Grid>
+				</div>
 			</MuiThemeProvider>
 		);
 	}
 };
 
 ReactDOM.render(
-	<Main />,
+	<App />,
 	document.getElementById('app')
 );
