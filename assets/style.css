@@ -4,6 +4,18 @@
 	box-sizing: border-box;
 }
 
-.container {
+body {
+	background: #F7F6FB !important;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.container,
+.container-fluid {
 	margin-top: 20px !important;
 }
+
+.webcam-wrapper {
+	margin-top: 20px;
+}
+
