@@ -9,7 +9,11 @@ import AppBar from 'material-ui/AppBar';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 // Components
-import UploadButton from './components/Button';
+import SearchButton from './components/Button';
+import SearchBar from './components/SearchBar';
+import WebcamCard from './components/WebcamCard';
+import Filter from './components/Filter';
+import GoogleMap from './components/Map';
 
 
 class App extends React.Component {
@@ -17,11 +21,23 @@ class App extends React.Component {
 		return (
 			<MuiThemeProvider>
 				<div>
-					<AppBar title="Body Count"/>
-					<Grid>
+					<AppBar title="Body Count" />
+					<Grid fluid={true}>
 						<Row>
-							<Col md={12}>
-								<UploadButton/>
+							<Col md={6}>
+								<SearchBar />
+							</Col>
+							<Col md={6}>
+								<Filter />
+							</Col>
+						</Row>
+
+						<Row className="webcam-wrapper">
+							<Col md={6}>
+								<WebcamCard />
+							</Col>
+							<Col md={6}>
+								<GoogleMap />
 							</Col>
 						</Row>
 					</Grid>
