@@ -56539,17 +56539,6 @@
 
 	;
 
-	// const WebcamCard = () => (
-	//   <div>
-	//     <Card>
-	//       <CardHeader title="Location" />
-	//       <CardMedia>
-	//         <img src="../img/webcam.jpg" />
-	//       </CardMedia>
-	//     </Card>
-	//   </div>
-	// );
-
 	exports.default = WebcamCard;
 
 /***/ },
