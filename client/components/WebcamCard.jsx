@@ -30,8 +30,8 @@ class WebcamCard extends React.Component {
 
   renderCard(data) {
     return (
-      <Col md={3}>
-        <Card key={data.key}>
+      <Col md={3} key={data.key}>
+        <Card>
           <CardHeader title={data.label} />
           <CardMedia>
             <img src="../img/webcam.jpg" />

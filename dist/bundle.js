@@ -56510,10 +56510,10 @@
 	    value: function renderCard(data) {
 	      return _react2.default.createElement(
 	        _reactBootstrap.Col,
-	        { md: 3 },
+	        { md: 3, key: data.key },
 	        _react2.default.createElement(
 	          _Card.Card,
-	          { key: data.key },
+	          null,
 	          _react2.default.createElement(_Card.CardHeader, { title: data.label }),
 	          _react2.default.createElement(
 	            _Card.CardMedia,
