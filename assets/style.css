@@ -17,8 +17,10 @@ body {
 
 .webcam-wrapper {
 	margin-top: 20px;
+	background: pink;
 }
 
 .active-camera {
 	cursor: pointer;
+	margin: 15px 0;
 }
