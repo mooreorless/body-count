@@ -43,7 +43,6 @@ class SearchBar extends PureComponent {
   getCameras(value) {
     return axios.get(`/cameras?search=${value}`)
       .then(response => {
-        console.log(response);
 
         return this.setState({
           components: response.data,

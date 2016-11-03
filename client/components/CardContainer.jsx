@@ -11,6 +11,7 @@ import { Col } from 'react-bootstrap';
 
 import LoadingSpinner from './LoadingSpinner';
 import EmptyState from './EmptyState';
+import ErrorState from './ErrorState';
 
 
 function CardContainer(props) {
@@ -19,13 +20,13 @@ function CardContainer(props) {
     return <EmptyState />
   }
 
-  if (!props.data) {
-    return <LoadingSpinner />
+  if (props.data.length === 0) {
+    return <ErrorState />
   }
   else {
     const webcams = props.data.map(
       (i, k) => (
-        <Col md={4} key={k}>
+        <Col md={6} key={k}>
           <Card className="active-camera">
             <CardHeader title={i.location.city} />
             <CardMedia>
