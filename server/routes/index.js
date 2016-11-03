@@ -1,51 +1,43 @@
 import express from 'express';
+import async from 'async';
+import easyimg from 'easyimage';
+import cv from 'opencv';
 
 // import options from './config';
 
-import { countBodies, processImages } from '../helpers';
+import { updateActiveCams, countBodies, processImages } from '../helpers';
 
 const router = express.Router();
 
 let activeCams = [];
 let bodiesFound = [];
-let bodiesIndex = 0;
 let running = false;
+let bodiesIndex = 0;
+let completed = 0;
+// let deactivate = '';
+// let activate = '';
+
 
 //post form to server
-router.get('/upload', function (req, res, next) {
+router.get('/upload', (req, res, next) => {
 
   // grab the urls to add to and remove from the array
-  var activate = req.query['activate'];
-  var deactivate = req.query['deactivate'];
-  console.log('deactivate is ' + deactivate);
-  //only push it on if it isnt already in the activeCams array
-  if (activeCams.indexOf(activate) == -1) {
-    activeCams.push(activate);
-  }
-  //get the index of the cam to be deactivated, will be -1 if its not in the array
-  deactivateIndex = activeCams.indexOf(deactivate);
-  //only remove it if it already exists in the active cams array
-  if (deactivateIndex > -1) {
-    activeCams.splice(deactivateIndex, 1);
-  }
-  activeCams.forEach(function (item, index) {
-    console.log(item);
-  });
+  var webcamUrl = req.query['webcamUrl'];
+  
+  //send the url off to either be added to or removed from camera array
+  updateActiveCams(webcamUrl);
 
-  //call recursive image processing function
-  if (!running) {
+  //call recursive image processing function, ONLY CALL IF IT ISNT ALREADY RUNNING
+  if (!running){
     processImages();
     running = true;
   }
 
-  setTimeout(function () {
-    const camera = {
-      filename: activate,
-      activeCams: activeCams,
-    }
-
-    return res.status(200).json(camera);
-  }, 3000);
+  let data = {
+    activeCams: activeCams,
+    bodiesFound: bodiesFound
+  }
+  res.status(200).json(data);
 });//end post callback
 
 

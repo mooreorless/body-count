@@ -30,19 +30,18 @@ class WebcamCard extends React.Component {
   }
 
   activateCamera(camera) {
-    const client = axios.create({
-      baseURL: 'https://webcamstravel.p.mashape.com',
-      timeout: 5000,
-      headers: { 'X-Mashape-Key': 'R2uptxyNFdmshy44f3GtJ0CjqCkCp1XT71rjsn2IpT5ZYhKHxO' }
+    //send this webcam to the server to be processed
+    return axios.get('/upload', {
+      params: {
+        webcamUrl: 'https://images.webcams.travel/daylight/preview/1301039285.jpg'
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-    //api call
-    client.get('/webcams/list/country=AU?show=webcams:location,image,url')
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
   }
 
   renderCard(data) {
