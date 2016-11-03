@@ -24,3 +24,18 @@ body {
 	cursor: pointer;
 	margin: 15px 0;
 }
+
+.loading-spinner {
+	height: 430px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.empty-state {
+	height: 460px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

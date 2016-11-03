@@ -71,7 +71,6 @@ router.get('/cameras', (req, res) => {
       res.status(200).json(webcams);
     })
     .catch((error) => {
-      console.log(error);
       res.status(400).json(error);
     })
 

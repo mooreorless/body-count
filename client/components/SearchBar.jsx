@@ -11,6 +11,7 @@ import SearchButton from './Button';
 import Panel from './Panel';
 import Card from './Card';
 import CardContainer from './CardContainer';
+import EmptyState from './EmptyState';
 
 import {
   FormControl,
@@ -23,18 +24,17 @@ import {
 class SearchBar extends PureComponent {
   constructor(props) {
     super(props);
-    // this.getCameras = this.getCameras.bind(this); // <--- bind methods in constructor (this gives it a this context of SearchBar)
 
     this.state = {
       dataSource: [],
       components: [],
-      emptyState: [],
+      childVisible: true,
     }
   }
 
   handleInputChange = (value) => {
     this.setState({
-      dataSource: [
+      components: [
         value,
       ],
     });
@@ -47,11 +47,12 @@ class SearchBar extends PureComponent {
 
         return this.setState({
           components: response.data,
+          childVisible: false,
         });
       })
       .catch((error) => {
         return this.setState({
-          emptyState: error,
+          dataSource: error,
         })
       });
   }
@@ -60,12 +61,12 @@ class SearchBar extends PureComponent {
     return (
       <div>
         <AutoComplete
-          hintText="Search"
-          dataSource={this.state.dataSource}
+          dataSource={this.state.components}
           onNewRequest={this.getCameras.bind(this)}
           fullWidth={true} name="search"
+          floatingLabelText="Search by country name"
           />
-        <CardContainer data={this.state.components} onError={this.state.emptyState} />
+        <CardContainer data={this.state.components} showEmptyState={this.state.childVisible} />
       </div>
     )
   }
