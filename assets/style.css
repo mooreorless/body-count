@@ -5,7 +5,7 @@
 }
 
 body {
-	background: #F7F6FB !important;
+	/*background: #F7F6FB !important;*/
 	max-width: 100%;
 	overflow-x: hidden;
 }
@@ -17,8 +17,24 @@ body {
 
 .webcam-wrapper {
 	margin-top: 20px;
+	background: pink;
 }
 
 .active-camera {
-	cursor: pointer;
+	margin: 15px 0;
+}
+
+.loading-spinner {
+	height: 430px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.empty-state {
+	height: 590px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }

@@ -8,12 +8,15 @@ import AppBar from 'material-ui/AppBar';
 // Bootstrap Grid
 import { Grid, Row, Col } from 'react-bootstrap';
 
+
 // Components
 import SearchButton from './components/Button';
 import SearchBar from './components/SearchBar';
 import WebcamCard from './components/WebcamCard';
 import Filter from './components/Filter';
-import GoogleMap from './components/Map';
+import Map from './components/Map';
+import CardContainer from './components/CardContainer';
+import EmptyState from './components/EmptyState';
 
 
 class App extends React.Component {
@@ -29,15 +32,7 @@ class App extends React.Component {
 							</Col>
 							<Col md={6}>
 								<Filter />
-							</Col>
-						</Row>
-
-						<Row className="webcam-wrapper">
-							<Col md={6}>
-								<WebcamCard />
-							</Col>
-							<Col md={6}>
-								<GoogleMap />
+								<Map />
 							</Col>
 						</Row>
 					</Grid>

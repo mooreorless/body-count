@@ -1,7 +1,13 @@
 import React from 'react';
 
-import { Map, Marker } from 'google-maps-react';
+import {
+  Map,
+  Marker,
+} from 'google-maps-react';
 import { GoogleApiWrapper } from 'google-maps-react';
+
+import Panel from './Panel';
+import LoadingSpinner from './LoadingSpinner';
 
 
 export class GoogleMap extends React.Component {
@@ -18,16 +24,17 @@ export class GoogleMap extends React.Component {
   render() {
     const style = {
       width: '685px',
-      height: '600px'
+      height: '650px'
     };
 
+
     if (!this.props.loaded) {
-      return <div>Loading...</div>
+      return <div><LoadingSpinner /></div>
     }
     return (
       <div>
         <Map style={style} ref="map" google={this.props.google} zoom={2}>
-          <Marker name={'test'} position={{ lat: 37.778519, lng: -122.405640 }} icon={'/img/markers/m5.png'} />
+          <Marker name="test" position={{ lat: 37.778519, lng: -122.405640 }} icon={'/img/markers/m5.png'} />
         </Map>
       </div>
     );
@@ -37,3 +44,4 @@ export class GoogleMap extends React.Component {
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyDd3Oo9EcZeFawwpa_BVfEenewPDhoGNJw'
 })(GoogleMap);
+

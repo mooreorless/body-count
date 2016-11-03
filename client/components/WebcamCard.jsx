@@ -31,24 +31,26 @@ class WebcamCard extends React.Component {
 
   activateCamera(camera) {
     //send this webcam to the server to be processed
-    return axios.get('/upload', {
-      params: {
-        webcamUrl: 'https://images.webcams.travel/daylight/preview/1301039285.jpg'
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    // return axios.get('/upload', {
+    //   params: {
+    //     webcamUrl: 'https://images.webcams.travel/daylight/preview/1301039285.jpg'
+    //   }
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    //turn on/off cameras here
   }
+
 
   renderCard(data) {
     return (
       <Col md={3} key={data.key}>
         <Card className="active-camera" onClick={(e) => this.activateCamera(e)}>
-          <CardHeader title={data.label} />
+          <CardHeader title={data} />
           <CardMedia>
             <img src="../img/webcam.jpg" />
           </CardMedia>
@@ -58,9 +60,13 @@ class WebcamCard extends React.Component {
   }
 
   render() {
+    if (!this.props.data) {
+      return null;
+    }
     return (
       <div style={this.styles.wrapper}>
-        {this.state.locations.map(this.renderCard, this)}
+        {this.props.data.map()}
+
       </div>
     );
   }
@@ -69,3 +75,4 @@ class WebcamCard extends React.Component {
 
 export default WebcamCard;
 
+// {this.state.locations.map(this.renderCard, this)}
