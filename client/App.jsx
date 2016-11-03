@@ -30,14 +30,6 @@ class App extends React.Component {
 							</Col>
 							<Col md={6}>
 								<Filter />
-							</Col>
-						</Row>
-
-						<Row>
-							<Col md={6}>
-								<CardContainer />
-							</Col>
-							<Col md={6}>
 								<GoogleMap />
 							</Col>
 						</Row>

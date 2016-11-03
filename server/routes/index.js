@@ -13,6 +13,8 @@ const instance = axios.create({
   headers: options.headers
 });
 
+const countries = require('country-list')();
+
 let activeCams = [];
 let bodiesFound = [];
 let bodiesIndex = 0;
@@ -58,15 +60,19 @@ router.get('/upload', function (req, res, next) {
 router.get('/cameras', (req, res) => {
   let search = req.query['search'];
 
-  instance.get(`/webcams/list/category=${search}?show=webcams:location,image,url`)
+  // Get country code
+  let params = countries.getCode(search);
+  console.log(params);
+
+  instance.get(`/webcams/list/country=${params}?show=webcams:location,image,url`)
     .then((response) => {
       const webcams = response.data.result.webcams;
 
       res.status(200).json(webcams);
-      // res.send(webcams);
     })
     .catch((error) => {
       console.log(error);
+      res.status(400).json(error);
     })
 
 });

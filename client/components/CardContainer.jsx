@@ -12,11 +12,12 @@ import { Col } from 'react-bootstrap';
 
 function CardContainer(props) {
 
+
   const webcams = props.data.map(
     (i, k) => (
-      <Col md={3}>
-        <Card key={k} className="active-camera">
-          <CardHeader title={i.id} />
+      <Col md={3} key={k}>
+        <Card className="active-camera">
+          <CardHeader title={i.title} />
           <CardMedia>
             <img src={i.image.current.thumbnail} />
           </CardMedia>
@@ -33,12 +34,14 @@ function CardContainer(props) {
 // declate prop types here (look up react propTypes). helps with error handlind. i.e. i was passing an object from axios it turns out.
 CardContainer.propTypes = {
   data: PropTypes.array,
+  emptyState: PropTypes.array,
 };
 
 
 // declare default props values here. saves error checking.
 CardContainer.defaultProps = {
   data: [],
-}
+  emptyState: [],
+};
 
 export default CardContainer;

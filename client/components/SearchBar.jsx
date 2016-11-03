@@ -15,7 +15,7 @@ import CardContainer from './CardContainer';
 import {
   FormControl,
   InputGroup,
-  FormGroup, // <--- use comma dangles in objects & arrays. makes it easier when you add or remove items.
+  FormGroup,
 } from 'react-bootstrap';
 
 
@@ -23,11 +23,12 @@ import {
 class SearchBar extends PureComponent {
   constructor(props) {
     super(props);
-    this.getCameras = this.getCameras.bind(this); // <--- bind methods in constructor (this gives it a this context of SearchBar)
+    // this.getCameras = this.getCameras.bind(this); // <--- bind methods in constructor (this gives it a this context of SearchBar)
 
     this.state = {
       dataSource: [],
       components: [],
+      emptyState: [],
     }
   }
 
@@ -48,22 +49,23 @@ class SearchBar extends PureComponent {
           components: response.data,
         });
       })
-      .catch(console.log);
+      .catch((error) => {
+        return this.setState({
+          emptyState: error,
+        })
+      });
   }
-  //AutoComplete - on change
-  //discard old reqs with new res
+
   render() {
     return (
       <div>
-        <Panel>
-          <AutoComplete
-            hintText="Search"
-            dataSource={this.state.dataSource}
-            onNewRequest={this.getCameras}
-            fullWidth={true} name="search"
-            />
-        </Panel>
-        <CardContainer data={this.state.components} />
+        <AutoComplete
+          hintText="Search"
+          dataSource={this.state.dataSource}
+          onNewRequest={this.getCameras.bind(this)}
+          fullWidth={true} name="search"
+          />
+        <CardContainer data={this.state.components} onError={this.state.emptyState} />
       </div>
     )
   }
