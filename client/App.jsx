@@ -14,6 +14,7 @@ import SearchBar from './components/SearchBar';
 import WebcamCard from './components/WebcamCard';
 import Filter from './components/Filter';
 import GoogleMap from './components/Map';
+import CardContainer from './components/CardContainer';
 
 
 class App extends React.Component {
@@ -29,14 +30,6 @@ class App extends React.Component {
 							</Col>
 							<Col md={6}>
 								<Filter />
-							</Col>
-						</Row>
-
-						<Row className="webcam-wrapper">
-							<Col md={6}>
-								<WebcamCard />
-							</Col>
-							<Col md={6}>
 								<GoogleMap />
 							</Col>
 						</Row>

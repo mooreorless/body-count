@@ -15,7 +15,7 @@ class SearchButton extends React.Component {
 		const uploadIcon = <FontIcon className="material-icons">file_upload</FontIcon>;
 
 		return (
-			<FlatButton label="Upload" href="/upload" labelPosition="before" secondary={true} icon={uploadIcon} className="" style={styles} />
+			<FlatButton label="Upload" labelPosition="before" secondary={true} icon={uploadIcon} className="" style={styles} />
 		);
 	}
 };

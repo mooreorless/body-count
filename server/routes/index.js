@@ -1,10 +1,19 @@
 import express from 'express';
+import axios from 'axios';
 
-// import options from './config';
 
+import options from '../config';
 import { countBodies, processImages } from '../helpers';
 
 const router = express.Router();
+
+const instance = axios.create({
+  baseURL: options.url,
+  timeout: options.timeout,
+  headers: options.headers
+});
+
+const countries = require('country-list')();
 
 let activeCams = [];
 let bodiesFound = [];
@@ -48,6 +57,25 @@ router.get('/upload', function (req, res, next) {
   }, 3000);
 });//end post callback
 
+router.get('/cameras', (req, res) => {
+  let search = req.query['search'];
+
+  // Get country code
+  let params = countries.getCode(search);
+  console.log(params);
+
+  instance.get(`/webcams/list/country=${params}?show=webcams:location,image,url`)
+    .then((response) => {
+      const webcams = response.data.result.webcams;
+
+      res.status(200).json(webcams);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(400).json(error);
+    })
+
+});
 
 
 export default router;
