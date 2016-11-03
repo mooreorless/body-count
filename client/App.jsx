@@ -29,7 +29,6 @@ class App extends React.Component {
 						<Row>
 							<Col md={6}>
 								<SearchBar />
-
 							</Col>
 							<Col md={6}>
 								<Filter />
