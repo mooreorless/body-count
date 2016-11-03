@@ -5,7 +5,9 @@ import {
   Marker,
 } from 'google-maps-react';
 import { GoogleApiWrapper } from 'google-maps-react';
+
 import Panel from './Panel';
+import LoadingSpinner from './LoadingSpinner';
 
 
 export class GoogleMap extends React.Component {
@@ -22,12 +24,12 @@ export class GoogleMap extends React.Component {
   render() {
     const style = {
       width: '685px',
-      height: '600px'
+      height: '650px'
     };
 
 
     if (!this.props.loaded) {
-      return <div>Loading...</div>
+      return <div><LoadingSpinner /></div>
     }
     return (
       <div>
@@ -42,3 +44,4 @@ export class GoogleMap extends React.Component {
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyDd3Oo9EcZeFawwpa_BVfEenewPDhoGNJw'
 })(GoogleMap);
+

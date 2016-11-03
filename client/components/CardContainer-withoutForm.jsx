@@ -7,10 +7,6 @@ import {
   CardTitle,
   CardText
 } from 'material-ui/Card';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import ImageFlashOn from 'material-ui/svg-icons/image/flash-on'
-
 import { Col } from 'react-bootstrap';
 
 import LoadingSpinner from './LoadingSpinner';
@@ -19,13 +15,6 @@ import ErrorState from './ErrorState';
 
 
 function CardContainer(props) {
-
-  const btnStyles = {
-    position: 'absolute',
-    bottom: 10,
-    right: 20,
-
-  }
 
   if (props.showEmptyState) {
     return <EmptyState />
@@ -43,12 +32,8 @@ function CardContainer(props) {
             <CardMedia>
               <img src={i.image.current.thumbnail} />
             </CardMedia>
-            <FloatingActionButton style={btnStyles} className="pull-right" backgroundColor="#E91E63" href={"/test?webcamUrl=" + i.image.daylight.preview}>
-              <ImageFlashOn />
-            </FloatingActionButton>
           </Card>
         </Col>
-
       )
     )
     return <div>{webcams}</div>;

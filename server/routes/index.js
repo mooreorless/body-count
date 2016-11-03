@@ -71,10 +71,13 @@ router.get('/cameras', (req, res) => {
       res.status(200).json(webcams);
     })
     .catch((error) => {
-      console.log(error);
       res.status(400).json(error);
     })
+});
 
+router.get('/test', (req, res) => {
+  let query = req.query['webcamUrl'];
+  console.log(query);
 });
 
 
