@@ -1,10 +1,32 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from 'material-ui/Card';
+
 import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import ImageFlashOn from 'material-ui/svg-icons/image/flash-on';
 
 import { Col } from 'react-bootstrap';
+
+import {
+  EmptyState,
+  ErrorState,
+  LoadingSpinner,
+} from './index';
+
+// import LoadingSpinner from './LoadingSpinner';
+// import EmptyState from './EmptyState';
+// import ErrorState from './ErrorState';
+
 
 class WebcamCard extends React.Component {
   constructor(props) {
@@ -12,67 +34,65 @@ class WebcamCard extends React.Component {
   }
 
   componentWillMount() {
-    this.state = {
-      locations: [
-        { key: 0, label: 'Brisbane' },
-        { key: 1, label: 'NewYork' },
-        { key: 2, label: 'Paris' },
-        { key: 3, label: 'Berlin' }
-      ]
-    };
 
     this.styles = {
       wrapper: {
         display: 'flex',
         flexWrap: 'wrap'
+      },
+      btn: {
+        position: 'absolute',
+        bottom: 10,
+        right: 20,
       }
     };
-  }
+  };
 
   activateCamera(camera) {
-    //send this webcam to the server to be processed
-    // return axios.get('/upload', {
-    //   params: {
-    //     webcamUrl: 'https://images.webcams.travel/daylight/preview/1301039285.jpg'
-    //   }
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    console.log(camera);
+    return axios.get(`/activate?webcamUrl=${camera}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     //turn on/off cameras here
   }
 
 
   renderCard(data) {
     return (
-      <Col md={3} key={data.key}>
-        <Card className="active-camera" onClick={(e) => this.activateCamera(e)}>
-          <CardHeader title={data} />
+      <Col md={6} key={data.id}>
+        <Card className="active-camera">
+          <CardHeader title={data.location.city} />
           <CardMedia>
-            <img src="../img/webcam.jpg" />
+            <img src={data.image.current.thumbnail} />
           </CardMedia>
+          <FloatingActionButton style={this.styles.btn} className="pull-right" backgroundColor="#E91E63" onClick={() => this.activateCamera(data.image.daylight.preview)}>
+            <ImageFlashOn />
+          </FloatingActionButton>
         </Card>
       </Col>
     );
   }
 
   render() {
-    if (!this.props.data) {
-      return null;
+    if (this.props.showEmptyState) {
+      return <EmptyState />
     }
-    return (
-      <div style={this.styles.wrapper}>
-        {this.props.data.map()}
 
-      </div>
-    );
+    if (this.props.data.length === 0) {
+      return <ErrorState />
+    } else {
+      return (
+        <div style={this.styles.wrapper}>
+          {this.props.data.map(this.renderCard, this)}
+        </div>
+      );
+    }
   }
 
 };
 
 export default WebcamCard;
-
-// {this.state.locations.map(this.renderCard, this)}

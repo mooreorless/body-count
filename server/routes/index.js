@@ -27,16 +27,16 @@ let completed = 0;
 
 
 //post form to server
-router.get('/upload', (req, res, next) => {
+router.get('/activate', (req, res, next) => {
 
   // grab the urls to add to and remove from the array
   var webcamUrl = req.query['webcamUrl'];
-  
+
   //send the url off to either be added to or removed from camera array
   updateActiveCams(webcamUrl);
 
   //call recursive image processing function, ONLY CALL IF IT ISNT ALREADY RUNNING
-  if (!running){
+  if (!running) {
     processImages();
     running = true;
   }
