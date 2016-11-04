@@ -6,17 +6,19 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 
 // Bootstrap Grid
-import { Grid, Row, Col } from 'react-bootstrap';
+import {
+	Grid,
+	Row,
+	Col
+} from 'react-bootstrap';
 
+// Custom Components
+import {
+	SearchBar,
+	Filter,
+	Map,
+} from './components';
 
-// Components
-import SearchButton from './components/Button';
-import SearchBar from './components/SearchBar';
-import WebcamCard from './components/WebcamCard';
-import Filter from './components/Filter';
-import Map from './components/Map';
-import CardContainer from './components/CardContainer';
-import EmptyState from './components/EmptyState';
 
 
 class App extends React.Component {

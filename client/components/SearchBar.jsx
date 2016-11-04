@@ -7,11 +7,11 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 
-import SearchButton from './Button';
-import Panel from './Panel';
-import Card from './Card';
-import CardContainer from './CardContainer';
-import EmptyState from './EmptyState';
+
+import {
+  Panel,
+  WebcamCard,
+} from './';
 
 import {
   FormControl,
@@ -65,7 +65,7 @@ class SearchBar extends PureComponent {
           fullWidth={true} name="search"
           floatingLabelText="Search by country name"
           />
-        <CardContainer data={this.state.components} showEmptyState={this.state.childVisible} />
+        <WebcamCard data={this.state.components} showEmptyState={this.state.childVisible} />
       </div>
     )
   }
