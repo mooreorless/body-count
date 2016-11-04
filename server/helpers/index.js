@@ -4,6 +4,7 @@ import cv from 'opencv';
 
 let activeCams = [];
 let bodiesFound = [];
+let picture = '';
 
 
 export const updateActiveCams = (url) =>{
@@ -28,17 +29,18 @@ export const countBodies = (callback) => {
   let toComplete = activeCams.length;
   console.log(toComplete + 'cams to process');
   async.forEachOf(activeCams, (item, index, callback) => {
-  console.log('going to process ' + item);
-      cv.readImage(item, function(err, im){
-        im.detectObject('node_modules/opencv/data/haarcascade_mcs_upperbody.xml', {}, function(err, bodies){
-         console.log('done reading image number '+index+' and found '+bodies);
-          bodiesFound[index] = bodies;
-          completed++;
-          console.log('completed is '+completed+' for item number '+index);
-          callback();
-        });
+  let temp = 'https://thumbs.dreamstime.com/z/seattle-pike-place-public-market-20771690.jpg';
+    cv.readImage(temp, function(err, im){
+      if (err) console.log('Error in readImage: '+err);
+      im.detectObject('node_modules/opencv/data/haarcascade_mcs_upperbody.xml', {}, function(err, bodies){
+        if (err) console.log('Error in detectObject: '+err);
+        console.log('done reading image number '+index+' and found '+bodies);
+        bodiesFound[index] = bodies;
+        completed++;
+        console.log('completed is '+completed+' for item number '+index);
+        callback();
       });
-    // });
+    });
   }, (err) => {
     if (err) {
       console.log(err);

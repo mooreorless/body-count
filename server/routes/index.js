@@ -27,7 +27,7 @@ let completed = 0;
 
 
 //post form to server
-router.get('/upload', (req, res, next) => {
+router.get('/activate', (req, res, next) => {
 
   // grab the urls to add to and remove from the array
   var webcamUrl = req.query['webcamUrl'];
@@ -42,10 +42,11 @@ router.get('/upload', (req, res, next) => {
   }
 
   let data = {
-    activeCams: activeCams,
-    bodiesFound: bodiesFound
+    activeCams: 'activeCams',
+    bodiesFound: 'bodiesFound'
   }
   res.status(200).json(data);
+  // res.sendStatus(200);
 });//end post callback
 
 router.get('/cameras', (req, res) => {

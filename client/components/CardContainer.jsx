@@ -16,6 +16,7 @@ import { Col } from 'react-bootstrap';
 import LoadingSpinner from './LoadingSpinner';
 import EmptyState from './EmptyState';
 import ErrorState from './ErrorState';
+import formHelper from '../helpers';
 
 
 function CardContainer(props) {
@@ -43,9 +44,13 @@ function CardContainer(props) {
             <CardMedia>
               <img src={i.image.current.thumbnail} />
             </CardMedia>
-            <FloatingActionButton style={btnStyles} className="pull-right" backgroundColor="#E91E63" href={"/test?webcamUrl=" + i.image.daylight.preview}>
-              <ImageFlashOn />
-            </FloatingActionButton>
+            <form id='webcamForm' method='get' action='/activate'>
+              <input type='hidden' value={i.image.daylight.preview} name='webcamUrl'/>
+              <FloatingActionButton style={btnStyles} className="pull-right" backgroundColor="#E91E63">
+                <ImageFlashOn />
+              </FloatingActionButton>
+              <input type='submit' value='activate'/>
+            </form>
           </Card>
         </Col>
 
