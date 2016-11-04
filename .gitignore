@@ -11,6 +11,8 @@ dist/**
 
 .DS_Store
 
+https:
+
 # Runtime data
 pids
 *.pid
