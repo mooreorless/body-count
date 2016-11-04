@@ -24,7 +24,8 @@ export class GoogleMap extends React.Component {
   render() {
     const style = {
       width: '685px',
-      height: '650px'
+      height: '650px',
+      position: 'fixed',
     };
 
 
@@ -32,9 +33,9 @@ export class GoogleMap extends React.Component {
       return <div><LoadingSpinner /></div>
     }
     return (
-      <div>
-        <Map style={style} ref="map" google={this.props.google} zoom={2}>
-          <Marker name="test" position={{ lat: 37.778519, lng: -122.405640 }} icon={'/img/markers/m5.png'} />
+      <div className="fixed">
+        <Map className="fixed" style={style} ref="map" google={this.props.google} zoom={2}>
+          <Marker name="test" position={{ lat: 37.778519, lng: -122.405640 }} icon={'/img/markers/m3.png'} />
         </Map>
       </div>
     );

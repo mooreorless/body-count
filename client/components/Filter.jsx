@@ -10,13 +10,15 @@ class Filter extends React.Component {
 
   componentWillMount() {
     // initial state
-    this.state = { filters: [
-      { key: 0, label: 'Forest' }, 
-      { key: 1, label: 'Traffic' },
-      { key: 2, label: 'Beach' },
-      { key: 3, label: 'City' },
-      { key: 4, label: 'Camping' }
-    ]};
+    this.state = {
+      filters: [
+        { key: 0, label: 'Forest' },
+        { key: 1, label: 'Traffic' },
+        { key: 2, label: 'Beach' },
+        { key: 3, label: 'City' },
+        { key: 4, label: 'Camping' }
+      ]
+    };
 
     this.styles = {
       chip: {
@@ -43,24 +45,22 @@ class Filter extends React.Component {
     this.setState({ filters: this.filters });
   };
 
-
-
   renderFilter(data) {
     return (
-      <Chip 
-        key={data.key} 
+      <Chip
+        key={data.key}
         onRequestDelete={() => this.handleRequestDelete(data.key)}
-        style={ this.styles.chip }>
-        
-        { data.label }
+        style={this.styles.chip}>
+
+        {data.label}
       </Chip>
     );
   }
 
   render() {
     return (
-      <div style={ this.styles.wrapper }>
-        { this.state.filters.map(this.renderFilter, this) }
+      <div style={this.styles.wrapper}>
+        {this.state.filters.map(this.renderFilter, this)}
       </div>
     );
   }
