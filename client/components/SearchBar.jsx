@@ -1,12 +1,10 @@
 import React, { PropTypes, PureComponent } from 'react';
-
 import axios from 'axios';
 
 import AutoComplete from 'material-ui/AutoComplete';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionSearch from 'material-ui/svg-icons/action/search';
-
 
 import {
   Panel,
@@ -18,7 +16,6 @@ import {
   InputGroup,
   FormGroup,
 } from 'react-bootstrap';
-
 
 
 class SearchBar extends PureComponent {

@@ -9,8 +9,6 @@ import {
   CardTitle,
   CardText
 } from 'material-ui/Card';
-
-import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ImageFlashOn from 'material-ui/svg-icons/image/flash-on';
@@ -21,11 +19,7 @@ import {
   EmptyState,
   ErrorState,
   LoadingSpinner,
-} from './index';
-
-// import LoadingSpinner from './LoadingSpinner';
-// import EmptyState from './EmptyState';
-// import ErrorState from './ErrorState';
+} from './';
 
 
 class WebcamCard extends React.Component {
@@ -34,7 +28,6 @@ class WebcamCard extends React.Component {
   }
 
   componentWillMount() {
-
     this.styles = {
       wrapper: {
         display: 'flex',
@@ -49,7 +42,6 @@ class WebcamCard extends React.Component {
   };
 
   activateCamera(camera) {
-    console.log(camera);
     return axios.get(`/activate?webcamUrl=${camera}`)
       .then(function (response) {
         console.log(response);
@@ -57,9 +49,7 @@ class WebcamCard extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-    //turn on/off cameras here
   }
-
 
   renderCard(data) {
     return (
