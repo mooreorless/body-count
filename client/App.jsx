@@ -23,22 +23,21 @@ import {
 class App extends React.Component {
     render() {
         return (
-            <MuiThemeProvider>
-                <div>
-                    <AppBar title="Body Count" />
-                    <Grid fluid={true}>
-                        <Row>
-                            <Col md={6}>
-                                <SearchBar />
-                            </Col>
-                            <Col md={6}>
-                                <Filter />
-                                <Map />
-                            </Col>
-                        </Row>
-                    </Grid>
-                </div>
-            </MuiThemeProvider>
+          <MuiThemeProvider>
+            <div>
+              <AppBar title="Body Count" />
+              <Grid fluid={true}>
+                <Row>
+                  <Col md={6}>
+                    <SearchBar />
+                  </Col>
+                  <Col md={6}>
+                    <Map />
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+          </MuiThemeProvider>
         );
     }
 };

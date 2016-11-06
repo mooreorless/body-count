@@ -53,7 +53,7 @@ class WebcamCard extends React.Component {
 
   renderCard(data) {
     return (
-      <Col md={6} key={data.id}>
+      <Col lg={6} md={2} sm={12} key={data.id}>
         <Card className="active-camera">
           <CardHeader title={data.location.city} />
           <CardMedia>

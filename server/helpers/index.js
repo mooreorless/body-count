@@ -7,9 +7,9 @@ let bodiesFound = [];
 let picture = '';
 
 
-export const updateActiveCams = (url) =>{
+export const updateActiveCams = (url) => {
   //only push it on if it isnt already in the activeCams array
-  if (activeCams.indexOf(url) == -1) {
+  if (activeCams.indexOf(url) == -1 && activeCams.length < 10) {
     activeCams.push(url);
     console.log('updated activeCams' + activeCams);
   }
@@ -30,24 +30,21 @@ export const countBodies = (callback) => {
   let toComplete = activeCams.length;
   console.log(toComplete + 'cams to process');
   async.forEachOf(activeCams, (item, index, callback) => {
-    easyimg.resize({
-      width: 960,
-      src: item,
-      dst: item
-    })
-    .then((image)=>{
-      cv.readImage(item, function(err, im){
-        if (err) console.log('Error in readImage: '+err);
-        im.detectObject('node_modules/opencv/data/haarcascade_mcs_upperbody.xml', {}, function(err, bodies){
-          if (err) console.log('Error in detectObject: '+err);
-          console.log('done reading image number '+index+' and found '+bodies);
-          bodiesFound[index] = bodies;
-          completed++;
-          console.log('completed is '+completed+' for item number '+index);
-          callback();
+    let split = item.split('/');
+    // Strips image filename from url
+    let imgPath = './assets/img/people.jpg';
+    
+        cv.readImage(imgPath, function (err, im) {
+          if (err) console.log('Error in readImage: ' + err);
+          im.detectObject('node_modules/opencv/data/haarcascade_mcs_upperbody.xml', {}, function (err, bodies) {
+            if (err) console.log('Error in detectObject: ' + err);
+            console.log('done reading image number ' + index + ' and found ' + bodies);
+            bodiesFound[index] = bodies;
+            completed++;
+            console.log('completed is ' + completed + ' for item number ' + index);
+            callback();
+          });
         });
-      });
-    });
   }, (err) => {
     if (err) {
       console.log(err);
@@ -63,18 +60,17 @@ export const countBodies = (callback) => {
 export const processImages = () => {
   console.log(activeCams.length);
   //call functions in order
-  
+
   async.waterfall(
-    [( callback ) => {
-        //get data from image
-        countBodies(callback);
-      }
+    [(callback) => {
+      //get data from image
+      countBodies(callback);
+    }
     ],
-    ( err, bodies) => {
+    (err, bodies) => {
       console.log('waiting 5 seconds to process images');
       setTimeout(processImages, 1500);
       // processImages();
     }
   );//end waterfall
 };
-
